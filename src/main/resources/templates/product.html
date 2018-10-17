@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="fragments/layout :: headFragment (title=${product.name})">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 style="text-align: center">Product</h1>
+        </div>
+    </div>
+</div>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title" th:text="${product.name}"></h1>
+                    <img class="card-img-top" th:src="@{/{image}(image=${product.pathFiles})}" width="500" height="500" alt="${product.name}" border="1px">
+                    <p clas="card-text" th:text="${product.description}"></p>
+                    <p clas="card-text" th:text="${product.price}"></p>
+                    <form th:action="@{/products/{id}/delete(id=${product.id})}" method="post">
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <a th:href="@{/}" class="btn btn-primary">Return</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+<div th:include="fragments/layout :: scriptsFragment" th:remove="tag">
+</div>
+</body>
+</html>

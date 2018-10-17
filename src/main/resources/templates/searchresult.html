@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: headFragment (title = 'Home Page')">
+<div class="container" style="margin-bottom: 15px">
+    <div class="row">
+        <div class="col">
+            <h1>All Products</h1>
+            <a class="btn btn-primary" th:href="@{/product/add}">Add Product</a>
+        </div>
+    </div>
+</div>
+</head>
+<div class="container">
+    <div class="row">
+    <div class="col">
+        <form th:action="@{/search}">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <input class="form-control" name="name" th:value="${search}"/>
+                </div>
+                <div class="col-6 col-md-4">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" style="margin-top: 15px" th:each="product:${products}">
+            <div class="card">
+            <a th:href="@{/product/{id}(id=${product.id})}">
+                <div class="card-body">
+                    <ea style="color: black">Product</ea>
+                    <img class="card-img-top" th:src="@{/{image}(image=${product.pathFiles})}" width="300" height="300" alt="Product" >
+                    <h1 class="card-title" th:text="${product.name}"></h1>
+                    <i style="color: black">Price</i>
+                    <p clas="card-text" th:text="${product.price}">Product Price</p>
+                </div>
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:include="fragments/layout :: scriptsFragment" th:remove="tag">
+</div>
+</body>
+</html>

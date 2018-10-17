@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: headFragment (title = 'Login Page')">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <form th:action="@{/login}" method="post">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="name">Login</label>
+                        <input type="text" class="form-control" id="login" name="login" placeholder="Login">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col s12">
+                        <label for="pass">Password</label>
+                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                      <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <div class="col">
+                      <a th:href="@{/registration}" class="btn btn-primary">Registration</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:include="fragments/layout :: scriptsFragment" th:remove="tag">
+</div>
+</body>
+</html>
